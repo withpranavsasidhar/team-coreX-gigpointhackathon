@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * A.R.I.A. design tokens.
+ *
+ * Light is the dominant mode: white surfaces, generous air, rose red used
+ * sparingly and always to mean something. Dark is a real second theme — deeper
+ * and warmer than an inversion, with the accent lifted so it still glows.
+ *
+ * Values are space-separated RGB channels so Tailwind's `/opacity` modifiers
+ * keep working (`bg-aria-500/10`, `border-red-500/30`, …).
+ */
+@layer base {
+  :root {
+    /* ── Surfaces ─────────────────────────────────────────────── */
+    --c-bg: 252 252 250; /* #FCFCFA — page */
+    --c-sunk: 255 255 255; /* #FFFFFF — navigation rail */
+    --c-surface: 255 255 255; /* #FFFFFF — cards */
+    --c-raised: 250 249 246; /* inputs, chips, hover fills */
+
+    /* ── Lines ────────────────────────────────────────────────── */
+    --c-line: 232 232 232; /* #E8E8E8 — hairline */
+    --c-line-2: 226 225 220;
+    --c-line-3: 214 213 207;
+
+    /* ── Type ─────────────────────────────────────────────────── */
+    --c-text: 17 17 17; /* #111111 — primary */
+    --c-text-strong: 42 42 42;
+    --c-text-body: 74 74 72;
+    --c-text-soft: 107 107 107; /* #6B6B6B — muted */
+    --c-text-muted: 133 133 128;
+    --c-text-faint: 158 158 152;
+
+    /* ── Brand: rose red ──────────────────────────────────────── */
+    --c-accent: 201 35 50; /* #C92332 */
+    --c-accent-solid: 201 35 50; /* button fill */
+    --c-accent-solid-hover: 169 20 36; /* #A91424 */
+    --c-accent-text: 201 35 50;
+    --c-accent-text-strong: 169 20 36;
+    --c-accent-text-deep: 127 15 28; /* #7F0F1C */
+    --c-accent-deep: 127 15 28;
+    --c-accent-deepest: 33 12 16; /* #210C10 — dark red-black */
+    --c-accent-tint: 246 217 220; /* #F6D9DC */
+    --c-accent-wash: 255 243 244; /* #FFF3F4 */
+    --c-accent-surface: 255 243 244;
+    --c-accent-glow: 201 35 50;
+
+    /* ── Semantic: danger / warning / success ─────────────────── */
+    --c-danger: 167 18 30;
+    --c-danger-solid: 167 18 30;
+    --c-danger-bright: 185 24 36;
+    --c-danger-text: 127 15 28;
+    --c-danger-text-strong: 107 12 23;
+    --c-danger-text-deep: 92 10 20;
+    --c-danger-deep: 127 15 28;
+    --c-danger-deepest: 92 10 20;
+    --c-danger-surface: 255 241 242;
+
+    --c-warn: 180 83 9;
+    --c-warn-solid: 180 83 9;
+    --c-warn-bright: 194 97 10;
+    --c-warn-text: 146 64 14;
+    --c-warn-text-strong: 124 58 13;
+    --c-warn-text-deep: 107 50 11;
+    --c-warn-deep: 124 45 10;
+    --c-warn-deepest: 92 38 8;
+    --c-warn-surface: 255 248 237;
+
+    --c-ok: 5 150 105;
+    --c-ok-solid: 5 150 105;
+    --c-ok-bright: 4 134 94;
+    --c-ok-text: 4 120 87;
+    --c-ok-text-strong: 6 95 70;
+    --c-ok-deep: 6 78 59;
+    --c-ok-surface: 240 253 247;
+
+    /* ── Elevation ────────────────────────────────────────────── */
+    --shadow-soft: 0 1px 2px rgb(17 17 17 / 0.04);
+    --shadow-lift: 0 1px 2px rgb(17 17 17 / 0.04), 0 8px 24px -12px rgb(17 17 17 / 0.12);
+    --shadow-panel: 0 1px 3px rgb(17 17 17 / 0.06), 0 24px 48px -24px rgb(17 17 17 / 0.18);
+    --shadow-float: 0 2px 6px rgb(17 17 17 / 0.05), 0 32px 64px -28px rgb(127 15 28 / 0.22);
+
+    --aura-strength: 0.1;
+    color-scheme: light;
+  }
+
+  /* `.dark` is set on <html> by the theme script before first paint. */
+  :root.dark {
+    --c-bg: 13 13 15; /* #0D0D0F */
+    --c-sunk: 10 10 12;
+    --c-surface: 22 22 24; /* #161618 */
+    --c-raised: 30 30 33; /* #1E1E21 */
+
+    --c-line: 42 42 46; /* #2A2A2E */
+    --c-line-2: 52 52 57;
+    --c-line-3: 64 64 70;
+
+    --c-text: 247 247 247; /* #F7F7F7 */
+    --c-text-strong: 228 228 232;
+    --c-text-body: 196 196 202;
+    --c-text-soft: 169 169 174; /* #A9A9AE */
+    --c-text-muted: 138 138 145;
+    --c-text-faint: 112 112 120;
+
+    --c-accent: 228 59 74; /* #E43B4A */
+    --c-accent-solid: 201 35 50;
+    --c-accent-solid-hover: 169 20 36;
+    --c-accent-text: 240 96 110;
+    --c-accent-text-strong: 255 154 164;
+    --c-accent-text-deep: 255 210 214;
+    --c-accent-deep: 169 20 36;
+    --c-accent-deepest: 33 12 16;
+    --c-accent-tint: 54 20 26;
+    --c-accent-wash: 34 14 18;
+    --c-accent-surface: 37 13 18;
+    --c-accent-glow: 228 59 74;
+
+    --c-danger: 228 84 95;
+    --c-danger-solid: 185 24 36;
+    --c-danger-bright: 242 120 132;
+    --c-danger-text: 255 179 186;
+    --c-danger-text-strong: 255 208 213;
+    --c-danger-text-deep: 255 228 231;
+    --c-danger-deep: 143 17 29;
+    --c-danger-deepest: 92 10 20;
+    --c-danger-surface: 42 10 14;
+
+    --c-warn: 245 165 36;
+    --c-warn-solid: 180 83 9;
+    --c-warn-bright: 251 191 36;
+    --c-warn-text: 252 211 77;
+    --c-warn-text-strong: 253 230 138;
+    --c-warn-text-deep: 254 243 199;
+    --c-warn-deep: 146 64 14;
+    --c-warn-deepest: 92 38 8;
+    --c-warn-surface: 42 27 6;
+
+    --c-ok: 52 211 153;
+    --c-ok-solid: 5 150 105;
+    --c-ok-bright: 110 231 183;
+    --c-ok-text: 110 231 183;
+    --c-ok-text-strong: 167 243 208;
+    --c-ok-deep: 6 95 70;
+    --c-ok-surface: 6 32 26;
+
+    /* On near-black, depth comes from a lit top edge rather than a shadow. */
+    --shadow-soft: 0 1px 0 0 rgb(255 255 255 / 0.03) inset;
+    --shadow-lift: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 12px 28px -16px rgb(0 0 0 / 0.8);
+    --shadow-panel: 0 1px 0 0 rgb(255 255 255 / 0.05) inset, 0 28px 56px -24px rgb(0 0 0 / 0.85);
+    --shadow-float: 0 1px 0 0 rgb(255 255 255 / 0.06) inset, 0 32px 64px -28px rgb(0 0 0 / 0.9);
+
+    --aura-strength: 0.16;
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink-990 text-warm-50;
+    /* Theme changes cross-fade rather than snap. */
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  /* Display type carries the tightened tracking the identity calls for. */
+  h1,
+  h2 {
+    @apply font-display;
+    letter-spacing: -0.022em;
+  }
+
+  h3 {
+    letter-spacing: -0.012em;
+  }
+
+  /* Numbers are a first-class element of this product — keep them even. */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  ::selection {
+    background: rgb(var(--c-accent) / 0.18);
+    color: rgb(var(--c-text));
+  }
+
+  /* Scrollbars that belong to whichever theme is showing. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-ink-800;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-ink-700;
+  }
+}
+
+@layer components {
+  .skeleton {
+    @apply animate-shimmer rounded-lg;
+    background-image: linear-gradient(
+      90deg,
+      rgb(var(--c-raised)) 0%,
+      rgb(var(--c-line)) 50%,
+      rgb(var(--c-raised)) 100%
+    );
+    background-size: 200% 100%;
+  }
+
+  .focus-ring {
+    @apply outline-none ring-offset-2 ring-offset-ink-990 focus-visible:ring-2 focus-visible:ring-aria-500;
+  }
+
+  /* The standard card: a clean white surface in light, a lit one in dark. */
+  .panel {
+    @apply rounded-2xl border border-ink-850 bg-ink-950 shadow-soft;
+  }
+
+  .panel-hover {
+    @apply transition-all duration-200 hover:border-aria-500/25 hover:shadow-lift;
+  }
+
+  /*
+   * Atmospheric wash behind the command centre hero — the warm red light the
+   * brand sits in. Kept faint: it should read as lighting, not as a gradient.
+   */
+  .aria-aura {
+    position: relative;
+    background-image:
+      radial-gradient(
+        58% 56% at 50% 0%,
+        rgb(var(--c-accent) / var(--aura-strength)) 0%,
+        rgb(var(--c-accent) / calc(var(--aura-strength) * 0.3)) 42%,
+        transparent 72%
+      ),
+      radial-gradient(
+        26% 22% at 50% 4%,
+        rgb(var(--c-accent) / calc(var(--aura-strength) * 0.5)) 0%,
+        transparent 70%
+      );
+  }
+
+  /* Hairline that fades out at both ends — used under hero sections. */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--c-line)) 18%,
+      rgb(var(--c-line)) 82%,
+      transparent
+    );
+  }
+
+  /* Small uppercase eyebrow used above sections and stats. */
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-500;
+  }
+
+  /* A button that lifts a hair on hover and settles on press. */
+  .press {
+    @apply transition-all duration-150 active:translate-y-px active:scale-[0.99];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
