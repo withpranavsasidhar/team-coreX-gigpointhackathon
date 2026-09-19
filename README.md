@@ -18,7 +18,9 @@ A voice-first business memory platform for India's small shopkeepers — talk to
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?logo=postgresql&logoColor=white)](backend)
 [![License](https://img.shields.io/badge/license-MIT-C92332)](#license)
 
-[Live Demo](#-live-demo) · [Features](#-what-makes-aria-different) · [Screenshots](#-screenshots) · [Architecture](#-architecture) · [Getting Started](#-getting-started) · [Team](#-team)
+### [🚀 **Open the Live Demo →**](https://aria-frontend-production-c165.up.railway.app)
+
+[Features](#-what-makes-aria-different) · [Screenshots](#-screenshots) · [Architecture](#-architecture) · [Getting Started](#-getting-started) · [Team](#-team)
 
 </div>
 
