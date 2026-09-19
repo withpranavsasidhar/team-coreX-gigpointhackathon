@@ -47,7 +47,9 @@ A.R.I.A. isn't a dashboard with a microphone bolted on. **The voice core *is* th
 
 ## 🚀 Live Demo
 
-> Deployment link goes here once hosted — see [Getting Started](#-getting-started) to run it locally in under 5 minutes.
+**[aria-frontend-production-c165.up.railway.app](https://aria-frontend-production-c165.up.railway.app)** — register an account and start talking to A.R.I.A.
+
+Backend API: [aria-backend-production-4867.up.railway.app/api/health](https://aria-backend-production-4867.up.railway.app/api/health)
 
 ## 📸 Screenshots
 
