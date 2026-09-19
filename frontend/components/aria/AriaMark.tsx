@@ -5,10 +5,10 @@ import { useEffect, useId, useState } from "react";
 /**
  * The A.R.I.A. mark.
  *
- * A warm companion on a rose-red disc: a soft white form, two calm eyes, and
- * two red listening pills where ears would be — the product is a voice
- * assistant, so the mark listens. Drawn rather than illustrated so it stays
- * legible at 20px in the rail and at 96px on the sign-in screen.
+ * A single warm companion silhouette — no separate head/torso, no ear
+ * pieces — topped with a small signal antenna (it listens) and a soundwave
+ * badge on its chest (it talks back). Drawn rather than illustrated so it
+ * stays legible at 20px in the rail and at 96px on the sign-in screen.
  *
  * If a bitmap logo is dropped at `public/aria-logo.png`, every mark in the
  * app uses it instead. The probe runs once per page load and is shared by all
@@ -53,50 +53,53 @@ export function AriaMark({ className }: { className?: string }) {
     return <img src={LOGO_FILE} alt="" aria-hidden className={`${className} object-contain`} />;
   }
 
-  const disc = `aria-disc-${uid}`;
-  const shell = `aria-shell-${uid}`;
   const glow = `aria-glow-${uid}`;
+  const body = `aria-body-${uid}`;
+  const badge = `aria-badge-${uid}`;
 
   return (
     <svg viewBox="0 0 32 32" width="32" height="32" className={className} aria-hidden>
       <defs>
-        <linearGradient id={disc} x1="0.15" y1="0" x2="0.85" y2="1">
-          <stop offset="0%" stopColor="#E43B4A" />
-          <stop offset="55%" stopColor="#C92332" />
-          <stop offset="100%" stopColor="#8E1220" />
-        </linearGradient>
-        <linearGradient id={shell} x1="0.3" y1="0" x2="0.7" y2="1">
-          <stop offset="0%" stopColor="#FFFFFF" />
-          <stop offset="100%" stopColor="#F6E9EA" />
-        </linearGradient>
-        <radialGradient id={glow} cx="50%" cy="50%" r="50%">
-          <stop offset="60%" stopColor="#C92332" stopOpacity="0.28" />
+        <radialGradient id={glow} cx="50%" cy="55%" r="55%">
+          <stop offset="0%" stopColor="#C92332" stopOpacity="0.3" />
           <stop offset="100%" stopColor="#C92332" stopOpacity="0" />
         </radialGradient>
+        <linearGradient id={body} x1="0.2" y1="0" x2="0.8" y2="1">
+          <stop offset="0%" stopColor="#FFFFFF" />
+          <stop offset="100%" stopColor="#F3E4E5" />
+        </linearGradient>
+        <linearGradient id={badge} x1="0.15" y1="0" x2="0.85" y2="1">
+          <stop offset="0%" stopColor="#E43B4A" />
+          <stop offset="100%" stopColor="#A9142A" />
+        </linearGradient>
       </defs>
 
       {/* Warm light around the mark. */}
-      <circle cx="16" cy="16" r="16" fill={`url(#${glow})`} />
+      <circle cx="16" cy="17" r="13.5" fill={`url(#${glow})`} />
 
-      {/* The red disc — the brand's anchor. */}
-      <circle cx="16" cy="16" r="14.2" fill={`url(#${disc})`} />
-
-      {/* Listening pills, where ears would be. */}
-      <rect x="3.4" y="12.6" width="3.2" height="6.8" rx="1.6" fill="#FFF3F4" opacity="0.92" />
-      <rect x="25.4" y="12.6" width="3.2" height="6.8" rx="1.6" fill="#FFF3F4" opacity="0.92" />
-
-      {/* The companion: a soft, rounded, friendly form. */}
-      <rect x="6.6" y="8.2" width="18.8" height="16.4" rx="8.2" fill={`url(#${shell})`} />
-
-      {/* Two calm eyes. */}
-      <circle cx="12.2" cy="14.9" r="1.55" fill="#210C10" />
-      <circle cx="19.8" cy="14.9" r="1.55" fill="#210C10" />
-
-      {/* A small heart — warmth, and the reason the product exists. */}
+      {/* One continuous companion silhouette — no separate head/torso. */}
       <path
-        d="M16 20.9c-1.55-1-2.45-1.69-2.45-2.52a1.23 1.23 0 0 1 2.45-.37 1.23 1.23 0 0 1 2.45.37c0 .83-.9 1.52-2.45 2.52z"
-        fill="#C92332"
+        d="M16 2.6C22 2.6 25.6 7.8 26 13.2C26.4 19 24.2 24.6 19.6 28.2C17 30.2 15 30.2 12.4 28.2C7.8 24.6 5.6 19 6 13.2C6.4 7.8 10 2.6 16 2.6Z"
+        fill={`url(#${body})`}
       />
+
+      {/* A signal antenna — it's listening. */}
+      <line x1="16" y1="2.8" x2="16" y2="0.2" stroke="#C92332" strokeWidth="1.1" strokeLinecap="round" />
+      <circle cx="16" cy="0.2" r="1.1" fill="#E43B4A" />
+      <circle cx="16" cy="0.2" r="1.95" fill="none" stroke="#E43B4A" strokeOpacity="0.4" strokeWidth="0.5" />
+
+      {/* Calm eyes and a warm smile. */}
+      <rect x="11.6" y="11.2" width="2.5" height="3.1" rx="1.25" fill="#200C10" />
+      <rect x="17.9" y="11.2" width="2.5" height="3.1" rx="1.25" fill="#200C10" />
+      <path d="M13.6 16.8Q16 18.5 18.4 16.8" stroke="#200C10" strokeWidth="1" strokeLinecap="round" fill="none" />
+
+      {/* A soundwave badge — it talks back. */}
+      <rect x="11.8" y="21.2" width="8.4" height="5.4" rx="2.7" fill={`url(#${badge})`} />
+      <g stroke="#FFF3F4" strokeWidth="1.05" strokeLinecap="round">
+        <line x1="14" y1="22.6" x2="14" y2="25.2" />
+        <line x1="16" y1="21.9" x2="16" y2="25.9" />
+        <line x1="18" y1="22.6" x2="18" y2="25.2" />
+      </g>
     </svg>
   );
 }
