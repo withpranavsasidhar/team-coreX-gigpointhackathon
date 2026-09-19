@@ -1,7 +1,7 @@
-# YAAD — Technical Architecture Document
+# A.R.I.A. — Technical Architecture Document
 ## Production-Style System Architecture
 
-**Project:** YAAD (AI Business Memory)
+**Project:** A.R.I.A. (Adaptive Retail Intelligence Assistant) - Smart Voice Inventory Assistant
 **Document Version:** 1.0
 **Date:** September 19, 2026
 **Document Type:** Technical Architecture Document (TAD)
@@ -595,7 +595,7 @@ from app.middleware.error_handler import error_handler
 
 # Create FastAPI app
 app = FastAPI(
-    title="YAAD API",
+    title="A.R.I.A. API",
     description="AI Business Memory Platform",
     version="1.0.0",
 )
@@ -2120,23 +2120,23 @@ async def error_handler(request: Request, exc: Exception):
 
 ```python
 # app/core/exceptions.py
-class YAADException(Exception):
-    """Base exception for YAAD"""
+class A.R.I.A.Exception(Exception):
+    """Base exception for A.R.I.A."""
     pass
 
-class ProductNotFoundError(YAADException):
+class ProductNotFoundError(A.R.I.A.Exception):
     """Product not found"""
     pass
 
-class InsufficientStockError(YAADException):
+class InsufficientStockError(A.R.I.A.Exception):
     """Insufficient stock"""
     pass
 
-class InvalidEventError(YAADException):
+class InvalidEventError(A.R.I.A.Exception):
     """Invalid event"""
     pass
 
-class ConfidenceError(YAADException):
+class ConfidenceError(A.R.I.A.Exception):
     """Low confidence extraction"""
     pass
 ```
@@ -2192,12 +2192,12 @@ class Settings(BaseSettings):
     """Application settings"""
 
     # Application
-    APP_NAME: str = "YAAD API"
+    APP_NAME: str = "A.R.I.A. API"
     DEBUG: bool = False
     API_V1_PREFIX: str = "/api"
 
     # CORS
-    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000", "https://yaad.app"]
+    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000", "https://aria.app"]
 
     # Database
     DATABASE_URL: str
@@ -2240,7 +2240,7 @@ settings = Settings()
   "outputDirectory": ".next",
   "framework": "nextjs",
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://yaad-api.onrender.com"
+    "NEXT_PUBLIC_API_URL": "https://aria-api.onrender.com"
   }
 }
 ```
@@ -2250,14 +2250,14 @@ settings = Settings()
 # render.yaml
 services:
   - type: web
-    name: yaad-api
+    name: aria-api
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: yaad-db
+          name: aria-db
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
@@ -3127,7 +3127,7 @@ class ProviderFactory:
 ### Complete Project Structure
 
 ```
-yaad-project/
+aria-project/
 ├── frontend/                    # Next.js Frontend
 │   ├── app/
 │   │   ├── layout.tsx
@@ -3270,15 +3270,15 @@ yaad-project/
 # .env.example
 
 # Application
-APP_NAME=YAAD API
+APP_NAME=A.R.I.A. API
 DEBUG=false
 API_V1_PREFIX=/api
 
 # CORS
-ALLOWED_ORIGINS=http://localhost:3000,https://yaad.app
+ALLOWED_ORIGINS=http://localhost:3000,https://aria.app
 
 # Database
-DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/yaad
+DATABASE_URL=postgresql+asyncpg://user:password@localhost:5432/aria
 
 # JWT
 SECRET_KEY=your-secret-key-here

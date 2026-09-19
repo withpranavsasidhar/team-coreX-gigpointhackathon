@@ -1,7 +1,7 @@
-# YAAD — UI/UX Design System
+# A.R.I.A. — UI/UX Design System
 ## Premium Business Memory Interface
 
-**Project:** YAAD (AI Business Memory)
+**Project:** A.R.I.A. (Adaptive Retail Intelligence Assistant) - Smart Voice Inventory Assistant
 **Document Version:** 1.0
 **Date:** September 19, 2026
 **Document Type:** UI/UX Design System
@@ -84,7 +84,7 @@ The interface should prioritize voice interaction above all else. Every screen s
 ### Logo Concept
 
 ```
-YAAD
+A.R.I.A.
 ```
 
 - Simple, wordmark logo
@@ -787,11 +787,11 @@ Start by adding stock
 ```
 ┌─────────────────────────────────────┐
 │                                     │
-│         YAAD                        │
+│         A.R.I.A.                        │
 │                                     │
 │    "Your business remembers."        │
 │                                     │
-│  Speak naturally. YAAD handles      │
+│  Speak naturally. A.R.I.A. handles      │
 │         the rest.                   │
 │                                     │
 │                                     │
@@ -809,9 +809,9 @@ Start by adding stock
 **Design Specifications:**
 
 **Hero Section:**
-- Logo: "YAAD" in `--ink-900`, 600 weight, 36px
+- Logo: "A.R.I.A." in `--ink-900`, 600 weight, 36px
 - Tagline: "Your business remembers." in `--text-3xl`, `--ink-900`
-- Subtitle: "Speak naturally. YAAD handles the rest." in `--text-base`, `--ink-500`
+- Subtitle: "Speak naturally. A.R.I.A. handles the rest." in `--text-base`, `--ink-500`
 
 **Primary CTA:**
 - Button: "Set up my business"
@@ -889,7 +889,7 @@ Start by adding stock
 **Layout:**
 ```
 ┌─────────────────────────────────────┐
-│  ☰        YAAD               🔔     │
+│  ☰        A.R.I.A.               🔔     │
 │                                     │
 │  Good morning, Ravi.                │
 │                                     │
@@ -925,7 +925,7 @@ Start by adding stock
 
 **Header:**
 - Left: Menu icon (`☰`)
-- Center: "YAAD" logo
+- Center: "A.R.I.A." logo
 - Right: Notification bell (`🔔`)
 - Background: `--warm-50`
 - Padding: `--space-4`
@@ -1199,14 +1199,14 @@ Start by adding stock
 
 ---
 
-### SCREEN 5: Ask YAAD
+### SCREEN 5: Ask A.R.I.A.
 
 **Purpose:** Natural language query interface
 
 **Layout:**
 ```
 ┌─────────────────────────────────────┐
-│  ← Back           Ask YAAD      🎙   │
+│  ← Back           Ask A.R.I.A.      🎙   │
 │                                     │
 │  Ask anything about your business.   │
 │                                     │
@@ -1237,7 +1237,7 @@ Start by adding stock
 **Response Layout:**
 ```
 ┌─────────────────────────────────────┐
-│  ← Back           Ask YAAD      🎙   │
+│  ← Back           Ask A.R.I.A.      🎙   │
 │                                     │
 │  How much rice do I have?           │
 │                                     │
@@ -1261,7 +1261,7 @@ Start by adding stock
 
 **Header:**
 - Left: Back arrow
-- Center: "Ask YAAD"
+- Center: "Ask A.R.I.A."
 - Right: Microphone icon
 - Background: `--warm-50`
 - Padding: `--space-4`

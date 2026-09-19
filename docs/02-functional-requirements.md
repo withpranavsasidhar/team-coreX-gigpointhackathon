@@ -1,7 +1,7 @@
-# YAAD — Functional Requirements Document
+# A.R.I.A. — Functional Requirements Document
 ## Detailed Functional Specification
 
-**Project:** YAAD (AI Business Memory)
+**Project:** A.R.I.A. (Adaptive Retail Intelligence Assistant) - Smart Voice Inventory Assistant
 **Document Version:** 1.0
 **Date:** September 19, 2026
 **Document Type:** Functional Requirements Document (FRD)
@@ -1409,7 +1409,7 @@ Enable user registration, authentication, and business profile creation. Establi
 - **Setting up business:** Show spinner with "Setting up your business..."
 
 #### Success States
-- **Registration complete:** Show success message with "Welcome to YAAD!"
+- **Registration complete:** Show success message with "Welcome to A.R.I.A.!"
 - **Login complete:** Show success message with "Welcome back!"
 - **Business setup complete:** Show success message with "Business setup complete! Let's add your first product."
 

@@ -1,7 +1,7 @@
-# YAAD — Product Requirements Specification
+# A.R.I.A. — Product Requirements Specification
 ## Requirements Gathering & Analysis Document
 
-**Project:** YAAD (AI Business Memory)
+**Project:** A.R.I.A. (Adaptive Retail Intelligence Assistant) - Smart Voice Inventory Assistant
 **Document Version:** 1.0
 **Date:** September 19, 2026
 **Document Type:** Product Requirements Specification (PRS)
@@ -10,7 +10,7 @@
 
 ## Executive Summary
 
-YAAD is a voice-first AI-powered business memory platform designed for small businesses in India. It converts natural speech conversations into structured business events, maintains complete inventory history, understands regional and mixed-language speech, and provides intelligent insights about stock movement, predictions, and reorder recommendations.
+A.R.I.A. is a voice-first AI-powered business memory platform designed for small businesses in India. It converts natural speech conversations into structured business events, maintains complete inventory history, understands regional and mixed-language speech, and provides intelligent insights about stock movement, predictions, and reorder recommendations.
 
 **Core Philosophy:** "A shopkeeper should not have to maintain their inventory. Their business should remember itself."
 
@@ -240,7 +240,7 @@ The market lacks a solution that:
 
 **"A shopkeeper should not have to maintain their inventory. Their business should remember itself."**
 
-YAAD is an AI-powered business memory engine that:
+A.R.I.A. is an AI-powered business memory engine that:
 - Listens to natural business speech
 - Understands regional and mixed languages
 - Converts conversations into structured events
@@ -250,7 +250,7 @@ YAAD is an AI-powered business memory engine that:
 - Recommends actions
 
 **Vision Statement:**
-"YAAD transforms small business inventory management from a memory burden into an intelligent, voice-first business memory that speaks the owner's language, remembers every transaction, explains every change, and predicts every need."
+"A.R.I.A. transforms small business inventory management from a memory burden into an intelligent, voice-first business memory that speaks the owner's language, remembers every transaction, explains every change, and predicts every need."
 
 ---
 
@@ -260,10 +260,10 @@ YAAD is an AI-powered business memory engine that:
 **Category:** Voice-First AI Business Intelligence for Small Business Inventory
 
 ### Positioning Statement
-"For small business owners who struggle with inventory management, YAAD is a voice-first AI business memory that understands natural speech in regional languages, unlike traditional inventory software that requires typing and English proficiency."
+"For small business owners who struggle with inventory management, A.R.I.A. is a voice-first AI business memory that understands natural speech in regional languages, unlike traditional inventory software that requires typing and English proficiency."
 
 ### Competitive Positioning
-| Feature | Traditional Inventory Apps | YAAD |
+| Feature | Traditional Inventory Apps | A.R.I.A. |
 |---------|---------------------------|------|
 | Input Method | Typing forms | Voice-first |
 | Language Support | English-only | Regional + Mixed |
@@ -340,7 +340,7 @@ YAAD is an AI-powered business memory engine that:
 - Provides proactive alerts
 
 ### Competitive Moat
-- **Event-Led Architecture:** Most apps store state; YAAD stores events
+- **Event-Led Architecture:** Most apps store state; A.R.I.A. stores events
 - **Language Understanding:** Native regional + mixed language support
 - **Voice-First Design:** Not an add-on, but the primary interface
 - **Business Reasoning:** AI understands business context, not just text
