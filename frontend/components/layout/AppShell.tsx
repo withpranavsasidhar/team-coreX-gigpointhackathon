@@ -37,8 +37,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   const [commandOpen, setCommandOpen] = useState(false);
   const [switcherOpen, setSwitcherOpen] = useState(false);
+  const [confirmingLogout, setConfirmingLogout] = useState(false);
 
   const onboarding = pathname.startsWith("/onboarding");
+
+  // Closing the switcher should never leave a stale "confirm sign out?" prompt
+  // waiting for the next time it's opened.
+  useEffect(() => {
+    if (!switcherOpen) setConfirmingLogout(false);
+  }, [switcherOpen]);
 
   // Cmd/Ctrl-K shortcut
   useEffect(() => {
@@ -206,12 +213,33 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 >
                   ⚙ Settings
                 </Link>
-                {user ? (
+                {user ? confirmingLogout ? (
+                  <div className="rounded-lg bg-red-950/60 px-2.5 py-2">
+                    <p className="mb-1.5 text-xs font-semibold text-warm-50">Sign out of A.R.I.A.?</p>
+                    <p className="mb-2 text-[11px] text-ink-400">
+                      You&apos;ll need your mobile number and password to sign back in.
+                    </p>
+                    <div className="flex gap-1.5">
+                      <button
+                        onClick={() => {
+                          setSwitcherOpen(false);
+                          logout();
+                        }}
+                        className="flex-1 rounded-lg bg-red-600 px-2 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-red-500"
+                      >
+                        Sign Out
+                      </button>
+                      <button
+                        onClick={() => setConfirmingLogout(false)}
+                        className="flex-1 rounded-lg border border-ink-800 px-2 py-1.5 text-xs font-semibold text-ink-300 transition-colors hover:bg-ink-900"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : (
                   <button
-                    onClick={() => {
-                      setSwitcherOpen(false);
-                      logout();
-                    }}
+                    onClick={() => setConfirmingLogout(true)}
                     className="w-full rounded-lg px-2.5 py-2 text-left text-xs text-red-300 transition-colors hover:bg-red-950"
                   >
                     Sign Out ({user.phone})
