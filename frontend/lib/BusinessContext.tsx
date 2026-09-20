@@ -180,8 +180,11 @@ export function BusinessProvider({ children }: { children: ReactNode }) {
     } catch {
       /* ignore */
     }
-    void load();
-  }, [load]);
+    // No manual load() here: `load` still closes over the pre-logout `user`
+    // until this component re-renders, so calling it now would immediately
+    // re-authenticate the user it was just asked to sign out. The effect
+    // below re-runs `load` on its own once `user` settles to null.
+  }, []);
 
   return (
     <Ctx.Provider
