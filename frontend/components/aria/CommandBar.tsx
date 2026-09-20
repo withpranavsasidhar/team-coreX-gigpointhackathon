@@ -197,15 +197,16 @@ export function CommandBar({
               {capture.error ?? "Press Enter to send · Esc to close"}
             </p>
           </div>
-          {/* A.R.I.A. Vision entry point. Additive: nothing else moves. */}
+          {/* A.R.I.A. Vision entry point. Labelled, not just an icon — a bare
+              viewfinder glyph told no one it opens photo-based stocktaking. */}
           <button
             onClick={() => {
               onClose();
               router.push("/vision");
             }}
-            aria-label="Scan with A.R.I.A."
-            title="Scan with A.R.I.A."
-            className="press shrink-0 rounded-lg border border-ink-850 bg-ink-900 p-2 text-ink-400 transition-colors hover:border-aria-500/30 hover:text-aria-400"
+            aria-label="Scan a bill or shelf with A.R.I.A. Vision"
+            title="Scan a bill or shelf with A.R.I.A. Vision"
+            className="press flex shrink-0 items-center gap-1.5 rounded-lg border border-aria-500/25 bg-aria-500/[0.06] px-2.5 py-2 text-xs font-semibold text-aria-400 transition-colors hover:border-aria-500/45 hover:bg-aria-500/[0.12]"
           >
             <svg
               viewBox="0 0 24 24"
@@ -220,6 +221,7 @@ export function CommandBar({
               <path d="M3 9V6a1 1 0 0 1 1-1h3M21 9V6a1 1 0 0 0-1-1h-3M3 15v3a1 1 0 0 0 1 1h3M21 15v3a1 1 0 0 1-1 1h-3" />
               <circle cx="12" cy="12" r="3.2" />
             </svg>
+            <span className="hidden sm:inline">Scan</span>
           </button>
           <button
             onClick={() => void send(input)}

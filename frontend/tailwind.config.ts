@@ -172,6 +172,24 @@ const config: Config = {
           "0%, 100%": { transform: "translate3d(0,0,0)", opacity: "0.25" },
           "50%": { transform: "translate3d(0,-10px,0)", opacity: "0.6" },
         },
+        // Introduction page: atmospheric light that drifts slowly enough to
+        // read as lighting rather than as motion.
+        aurora: {
+          "0%, 100%": { transform: "translate3d(0,0,0) scale(1)" },
+          "33%": { transform: "translate3d(3%,-4%,0) scale(1.08)" },
+          "66%": { transform: "translate3d(-3%,3%,0) scale(0.95)" },
+        },
+        // A highlight that travels across a surface once per cycle.
+        shine: {
+          "0%": { transform: "translateX(-130%) skewX(-12deg)" },
+          "55%, 100%": { transform: "translateX(240%) skewX(-12deg)" },
+        },
+        // The typewriter caret in the live demo.
+        caret: {
+          "0%, 45%": { opacity: "1" },
+          "50%, 95%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         "fade-in": "fade-in 0.22s ease-out",
@@ -184,6 +202,9 @@ const config: Config = {
         sweep: "sweep 1.5s linear infinite",
         "count-up": "count-up 0.4s ease-out",
         "float-slow": "float-slow 6s ease-in-out infinite",
+        aurora: "aurora 20s ease-in-out infinite",
+        shine: "shine 3.6s ease-in-out infinite",
+        caret: "caret 1.1s steps(1) infinite",
       },
     },
   },

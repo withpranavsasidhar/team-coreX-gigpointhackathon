@@ -8,6 +8,7 @@ import { AriaMark } from "@/components/aria/AriaMark";
 import { CommandBar } from "@/components/aria/CommandBar";
 import { AuthScreen } from "@/components/auth/AuthScreen";
 import { AuthModal } from "@/components/auth/AuthModal";
+import { LandingPage } from "@/components/marketing/LandingPage";
 import { useBusiness } from "@/lib/BusinessContext";
 import { ThemeSwitcher } from "@/lib/theme";
 
@@ -38,8 +39,30 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [commandOpen, setCommandOpen] = useState(false);
   const [switcherOpen, setSwitcherOpen] = useState(false);
   const [confirmingLogout, setConfirmingLogout] = useState(false);
+  // Signed-out visitors meet the introduction first, and step into the
+  // existing sign-in screen from it. Auth itself is untouched.
+  const [showAuth, setShowAuth] = useState(false);
+  // "leaving" plays the introduction out behind a full-screen wash; the swap
+  // happens while that wash is opaque, so the two screens never cross-fade
+  // through each other. "arriving" lifts the wash off the sign-in screen.
+  const [authPhase, setAuthPhase] = useState<"idle" | "leaving" | "arriving">("idle");
 
   const onboarding = pathname.startsWith("/onboarding");
+
+  // Drives the introduction → sign-in transition, and cleans its own timers.
+  useEffect(() => {
+    if (authPhase === "leaving") {
+      const t = setTimeout(() => {
+        setShowAuth(true);
+        setAuthPhase("arriving");
+      }, 400);
+      return () => clearTimeout(t);
+    }
+    if (authPhase === "arriving") {
+      const t = setTimeout(() => setAuthPhase("idle"), 520);
+      return () => clearTimeout(t);
+    }
+  }, [authPhase]);
 
   // Closing the switcher should never leave a stale "confirm sign out?" prompt
   // waiting for the next time it's opened.
@@ -78,7 +101,50 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   if (!user) {
-    return <AuthScreen />;
+    return (
+      <>
+        {showAuth ? (
+          <div className="animate-scale-in relative">
+            <button
+              onClick={() => setShowAuth(false)}
+              className="press fixed left-4 top-4 z-20 flex items-center gap-1.5 rounded-lg border border-ink-850 bg-ink-950/80 px-3 py-1.5 text-xs font-medium text-ink-400 backdrop-blur transition-colors hover:border-aria-500/30 hover:text-warm-50"
+            >
+              <span aria-hidden>←</span> Back
+            </button>
+            <AuthScreen />
+          </div>
+        ) : (
+          <LandingPage
+            onEnter={() => setAuthPhase("leaving")}
+            leaving={authPhase === "leaving"}
+          />
+        )}
+
+        {/* The wash that carries you from the introduction to the sign-in
+            screen: A.R.I.A. waking up, rather than a blank white flash. */}
+        {authPhase !== "idle" && (
+          <div
+            aria-hidden
+            className={`fixed inset-0 z-[80] grid place-items-center bg-ink-990 transition-opacity duration-500 ${
+              authPhase === "leaving"
+                ? "animate-fade-in opacity-100"
+                : "pointer-events-none opacity-0"
+            }`}
+          >
+            <div className="aria-aura pointer-events-none absolute inset-0" />
+            <span className="relative grid h-28 w-28 place-items-center">
+              <span className="absolute inset-0 animate-ripple rounded-full border border-aria-500/40" />
+              <span
+                className="absolute inset-0 animate-ripple rounded-full border border-aria-500/30"
+                style={{ animationDelay: "0.8s" }}
+              />
+              <span className="absolute inset-0 animate-breathe rounded-full bg-aria-500/25 blur-2xl" />
+              <AriaMark className="relative h-20 w-20" />
+            </span>
+          </div>
+        )}
+      </>
+    );
   }
 
   if (onboarding) {
@@ -105,16 +171,21 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
         <div className="mx-5 hairline" />
 
-        <button
-          onClick={openCommand}
-          className="press group mx-3 mt-4 flex items-center gap-2.5 rounded-xl border border-ink-850 bg-ink-900 px-3 py-2.5 text-left text-sm text-ink-500 transition-all hover:border-aria-500/30 hover:bg-aria-500/[0.06] hover:text-warm-50"
-        >
-          <SearchIcon className="h-4 w-4 transition-colors group-hover:text-aria-500" />
-          <span className="flex-1">Ask A.R.I.A.…</span>
-          <kbd className="rounded-md border border-ink-850 bg-ink-950 px-1.5 py-0.5 font-sans text-[10px] text-ink-500">
-            ⌘K
-          </kbd>
-        </button>
+        {/* The primary way into the product, so it gets a resting glow — not
+            just a hover state — to draw the eye without demanding a click. */}
+        <div className="relative mx-3 mt-4">
+          <span className="animate-breathe pointer-events-none absolute -inset-1 rounded-2xl bg-aria-500/25 blur-lg" />
+          <button
+            onClick={openCommand}
+            className="press group relative flex w-full items-center gap-2.5 rounded-xl border border-aria-500/25 bg-ink-900 px-3 py-2.5 text-left text-sm text-ink-300 shadow-voice transition-all hover:border-aria-500/45 hover:bg-aria-500/[0.08] hover:text-warm-50"
+          >
+            <SearchIcon className="h-4 w-4 text-aria-500 transition-colors" />
+            <span className="flex-1 font-medium">Ask A.R.I.A.…</span>
+            <kbd className="rounded-md border border-ink-850 bg-ink-950 px-1.5 py-0.5 font-sans text-[10px] text-ink-500">
+              ⌘K
+            </kbd>
+          </button>
+        </div>
 
         <nav className="mt-5 flex-1 space-y-0.5 px-3">
           {NAV.map((item) => {
@@ -281,13 +352,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         >
           {user ? user.name.split(" ")[0] : "Account"}
         </button>
-        <button
-          onClick={openCommand}
-          aria-label="Ask A.R.I.A."
-          className="press rounded-lg border border-ink-850 bg-ink-900 p-2 text-ink-400 transition-colors hover:border-aria-500/30 hover:text-aria-400"
-        >
-          <SearchIcon className="h-4 w-4" />
-        </button>
+        <div className="relative">
+          <span className="animate-breathe pointer-events-none absolute -inset-1 rounded-xl bg-aria-500/25 blur-md" />
+          <button
+            onClick={openCommand}
+            aria-label="Ask A.R.I.A."
+            className="press relative rounded-lg border border-aria-500/25 bg-ink-900 p-2 text-aria-500 shadow-voice transition-colors hover:border-aria-500/45 hover:text-aria-400"
+          >
+            <SearchIcon className="h-4 w-4" />
+          </button>
+        </div>
       </header>
 
       <main className="mx-auto w-full max-w-5xl px-4 pb-28 pt-6 lg:pl-72 lg:pr-8 lg:pt-8">
